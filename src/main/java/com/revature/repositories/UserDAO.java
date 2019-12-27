@@ -6,9 +6,9 @@ import com.revatute.models.User;
 
 public interface UserDAO {
 	public List<User> findAll();
-	public User findById();
-	public User findByName();
-	public User findByEmail();
-	public boolean insertUser();
-	public boolean updateUser();
+	public User findById(int id);
+	public User findByName(String name);
+	public User findByEmail(String email);
+	public boolean insertUser(User u);
+	public boolean updateUser(User u);
 }
