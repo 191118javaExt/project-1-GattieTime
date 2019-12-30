@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import com.revature.models.Reinbursement;
 import com.revature.utils.ConnectionUtil;
-import com.revatute.models.Reinbursement;
 
 public class ReinburseDAOImpl implements ReinburseDAO {
 

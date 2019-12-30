@@ -1,4 +1,4 @@
-package com.revatute.models;
+package com.revature.models;
 
 import java.io.InputStream;
 import java.sql.Timestamp;

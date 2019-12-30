@@ -2,7 +2,7 @@ package com.revature.repositories;
 
 import java.util.List;
 
-import com.revatute.models.Reinbursement;
+import com.revature.models.Reinbursement;
 
 public interface ReinburseDAO {
 	public List<Reinbursement> findAll();

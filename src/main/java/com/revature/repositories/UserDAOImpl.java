@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
-import com.revatute.models.User;
 
 public class UserDAOImpl implements UserDAO {
 	
@@ -152,6 +152,8 @@ public class UserDAOImpl implements UserDAO {
 			stmt.setInt(6, u.getRole());
 
 			stmt.execute();
+			
+			//TODO set role name
 
 		} catch (SQLException ex) {
 			logger.warn("Unable to insert user.", ex);
