@@ -10,14 +10,15 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.models.Reinbursement;
 import com.revature.utils.ConnectionUtil;
 
 public class ReinburseDAOImpl implements ReinburseDAO {
 
-	Logger logger = Logger.getLogger(ReinburseDAOImpl.class);
+	Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
 
 	@Override
 	public List<Reinbursement> findAll() {

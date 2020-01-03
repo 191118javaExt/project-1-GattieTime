@@ -8,14 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAO {
 	
-	Logger logger = Logger.getLogger(UserDAOImpl.class);
+	Logger logger = LogManager.getLogger(UserDAOImpl.class);
 
 	@Override
 	public List<User> findAll() {

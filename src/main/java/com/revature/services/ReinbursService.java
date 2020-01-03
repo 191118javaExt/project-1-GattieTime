@@ -3,14 +3,15 @@ package com.revature.services;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.models.Reinbursement;
 import com.revature.models.User;
 import com.revature.repositories.ReinburseDAOImpl;
 
 public class ReinbursService {
-	private static Logger logger = Logger.getLogger(ReinbursService.class);
+	private static Logger logger = LogManager.getLogger(ReinbursService.class);
 	
 	public static boolean reinbursResolve(User u, Reinbursement r, int i) { 
 		r.setStatus(i);
