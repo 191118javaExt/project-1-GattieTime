@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { ReimbursementService } from 'src/app/services/reimbursement.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +10,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  currentUser: User;
-  constructor(private us: UserService, private router: Router) { }
+  amount: number = 0;
+  description: string = '';
+  type: number = 0;
 
+  currentUser: User;
+  constructor(private rs: ReimbursementService, private router: Router) { }
+  
   
 
   ngOnInit() {
@@ -22,6 +26,16 @@ export class HomeComponent implements OnInit {
     } else {
       this.currentUser = JSON.parse(userString);
     }
+
   }
+
+
+  sendReim() {
+    this.rs.submitReim(this.currentUser.id, this.amount, this.description, this.type).subscribe(
+      (response:void) => { console.log("reimbursement sent")}
+    );
+
+  }
+
 
 }

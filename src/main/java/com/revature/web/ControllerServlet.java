@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import com.revature.services.LoginService;
+import com.revature.utils.HelperUtil;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -18,12 +18,19 @@ public class ControllerServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String r = req.getParameter("r");
+		System.out.println(req.getRequestURI());
+		final String uri = req.getRequestURI().replace("/project-1/", "");
 		
-		switch(r.toLowerCase()) {
+		
+		
+		switch(uri.toLowerCase()) {
 			case "login":
-				LoginService.login(req, res);
+				HelperUtil.login(req, res);
 				break;
+			case "newreim":
+				HelperUtil.newReim(req, res);
+				break;
+			
 		}
 	}
 

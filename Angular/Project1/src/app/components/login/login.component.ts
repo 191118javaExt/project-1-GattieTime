@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  sendLogin() {
-    this.us.login(this.username, this.password).subscribe(
+  sendLogin() {this.us.login(this.username, this.password).subscribe(
       (response:User) => {
         sessionStorage.setItem('currentUser', JSON.stringify(response));
         console.log(response);

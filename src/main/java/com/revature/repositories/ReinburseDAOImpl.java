@@ -18,7 +18,7 @@ import com.revature.utils.ConnectionUtil;
 
 public class ReinburseDAOImpl implements ReinburseDAO {
 
-	Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
+	//Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
 
 	@Override
 	public List<Reinbursement> findAll() {
@@ -49,7 +49,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.warn("Unable to retrieve all reinbursements", e);
+			//logger.warn("Unable to retrieve all reimbursements", e);
 
 		}
 		return list;
@@ -82,7 +82,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.warn("Unable to retrieve all reinbursements", e);
+			//logger.warn("Unable to retrieve all reimbursements", e);
 
 		}
 		return r;
@@ -91,27 +91,44 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 	@Override
 	public boolean updateReinburse(Reinbursement r) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
+			
+			PreparedStatement stmt;
 
-			String sql = "UPDATE account SET amount = ?, submit = ?, resolved = ?, descript = ?, receipt = ?, author = ?, resovler = ?, status = ?, rein_type = ? Where id = ?;";
+			if (r.getReceipt() == null) {
+				String sql = "UPDATE reinburs SET amount = ?, submit = ?, resolved = ?, descript = ?, author = ?, resovler = ?, status = ?, rein_type = ? Where id = ?;";
 
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setDouble(1, r.getAmount());
-			stmt.setTimestamp(2, r.getSubmit());
-			stmt.setTimestamp(3, r.getResolved());
-			stmt.setString(4, r.getDescript());
-			stmt.setBinaryStream(5, r.getReceipt());
-			stmt.setInt(6, r.getAuthor());
-			stmt.setInt(7, r.getResolver());
-			stmt.setInt(8, r.getStatus());
-			stmt.setInt(9, r.getType());
+				stmt  = conn.prepareStatement(sql);
+				stmt.setDouble(1, r.getAmount());
+				stmt.setTimestamp(2, r.getSubmit());
+				stmt.setTimestamp(3, r.getResolved());
+				stmt.setString(4, r.getDescript());
+				stmt.setInt(5, r.getAuthor());
+				stmt.setInt(6, r.getResolver());
+				stmt.setInt(7, r.getStatus());
+				stmt.setInt(8, r.getType());
+			} else {
 
+				String sql = "UPDATE reinburs SET amount = ?, submit = ?, resolved = ?, descript = ?, receipt = ?, author = ?, resovler = ?, status = ?, rein_type = ? Where id = ?;";
+
+				stmt = conn.prepareStatement(sql);
+				stmt.setDouble(1, r.getAmount());
+				stmt.setTimestamp(2, r.getSubmit());
+				stmt.setTimestamp(3, r.getResolved());
+				stmt.setString(4, r.getDescript());
+				stmt.setBinaryStream(5, r.getReceipt());
+				stmt.setInt(6, r.getAuthor());
+				stmt.setInt(7, r.getResolver());
+				stmt.setInt(8, r.getStatus());
+				stmt.setInt(9, r.getType());
+			}
+			
 			if (!stmt.execute()) {
-				logger.warn("Reinbursement update failed to execute.");
+				//logger.warn("Reinbursement update failed to execute.");
 				return false;
 			}
 
 		} catch (SQLException ex) {
-			logger.warn("Unable to update reinbursement.", ex);
+			//logger.warn("Unable to update reimbursement.", ex);
 		}
 		return true;
 	}
@@ -120,22 +137,23 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 	public boolean insertReinburse(Reinbursement r) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 
-			String sql = "INSERT INTO account (amount, submit, descript, receipt, author, status, rein_type) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO reinburs (amount, submit, descript, author, status, rein_type) "
+					+ "VALUES (?, ?, ?, ?, ?, ?);";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setDouble(1, r.getAmount());
 			stmt.setTimestamp(2, r.getSubmit());
 			stmt.setString(3, r.getDescript());
-			stmt.setBinaryStream(4, r.getReceipt());
-			stmt.setInt(5, r.getAuthor());
-			stmt.setInt(6, r.getStatus());
-			stmt.setInt(7, r.getType());
+			//stmt.setBinaryStream(4, r.getReceipt());
+			stmt.setInt(4, r.getAuthor());
+			stmt.setInt(5, r.getStatus());
+			stmt.setInt(6, r.getType());
 
 			stmt.execute();
 
 		} catch (SQLException ex) {
-			logger.warn("Unable to insert reinbursement.", ex);
+			//logger.warn("Unable to insert reimbursement.", ex);
+			System.out.println(ex);
 		}
 		return true;
 	}

@@ -6,8 +6,10 @@ import java.time.LocalDateTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.models.ReimbursementTemplate;
 import com.revature.models.Reinbursement;
 import com.revature.models.User;
+import com.revature.repositories.ReinburseDAO;
 import com.revature.repositories.ReinburseDAOImpl;
 
 public class ReinbursService {
@@ -26,6 +28,26 @@ public class ReinbursService {
 			logger.info("Reinbursement " +r.getId()+" failed to be updated.");
 			return false;
 		}
+	}
+
+	public static boolean newReimburs(ReimbursementTemplate rt) {
+		Reinbursement r = new Reinbursement (rt.getAmount(), 
+				Timestamp.valueOf(LocalDateTime.now()), 
+				rt.getDescription(), 
+				null, 
+				rt.getUserId(),
+				1, 
+				rt.getType());
+		
+		ReinburseDAO rDAO = new ReinburseDAOImpl();
+		if(rDAO.insertReinburse(r)) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		
+		
 	}
 	
 	

@@ -1,0 +1,12 @@
+2020-01-03 16:37:44 WARN  UserDAOImpl:105 - Unable to retrieve all reinbursements
+org.postgresql.util.PSQLException: ERROR: column "user_name" does not exist
+  Position: 26
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505) ~[postgresql-42.2.9.jar:42.2.9]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241) ~[postgresql-42.2.9.jar:42.2.9]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310) ~[postgresql-42.2.9.jar:42.2.9]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447) ~[postgresql-42.2.9.jar:42.2.9]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368) ~[postgresql-42.2.9.jar:42.2.9]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158) ~[postgresql-42.2.9.jar:42.2.9]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:108) ~[postgresql-42.2.9.jar:42.2.9]
+	at com.revature.repositories.UserDAOImpl.findByName(UserDAOImpl.java:90) [classes/:?]
+	at com.revature.Driver.main(Driver.java:12) [classes/:?]

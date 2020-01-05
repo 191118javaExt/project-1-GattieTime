@@ -1,6 +1,7 @@
 package com.revature.models;
 
 public class User {
+	
 	private int id;
 	private String name;
 	private String password;
@@ -9,6 +10,10 @@ public class User {
 	private String email;
 	private int role;
 	private String roleName;
+	
+	public User() {
+		super();
+	}
 	
 	public User(int id, String name, String password, String firstName, String lastName, String email, int role) {
 		super();

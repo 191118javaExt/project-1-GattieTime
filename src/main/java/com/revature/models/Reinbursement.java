@@ -53,18 +53,15 @@ public class Reinbursement {
 	
 
 	public Reinbursement(double amount, Timestamp submit, String descript, InputStream receipt, int author,
-			String authorName, int status, String statusName, int type, String typeName) {
+			 int status, int type) {
 		super();
 		this.amount = amount;
 		this.submit = submit;
 		this.descript = descript;
 		this.receipt = receipt;
 		this.author = author;
-		this.authorName = authorName;
 		this.status = status;
-		this.statusName = statusName;
 		this.type = type;
-		this.typeName = typeName;
 	}
 
 

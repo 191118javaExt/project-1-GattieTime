@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 	public User findById(int id) {
 		User u = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM user WHERE id = ?;";
+			String sql = "SELECT * FROM users WHERE id = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
 
@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
 	public User findByName(String name) {
 		User u = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM user WHERE user_name = ?;";
+			String sql = "SELECT * FROM users WHERE user_name = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, name);
 
@@ -102,7 +102,7 @@ public class UserDAOImpl implements UserDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.warn("Unable to retrieve all reinbursements", e);
+			logger.warn("Unable to retrieve user "+name, e);
 
 		}
 		return u;
@@ -112,7 +112,7 @@ public class UserDAOImpl implements UserDAO {
 	public User findByEmail(String email) {
 		User u = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM user WHERE user_name = ?;";
+			String sql = "SELECT * FROM users WHERE user_name = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, email);
 

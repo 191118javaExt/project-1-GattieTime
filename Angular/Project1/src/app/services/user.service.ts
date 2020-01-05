@@ -18,7 +18,7 @@ export class UserService {
       password: password
     };
 
-    console.log(body)
+    
 
     return this.http.post<User>(('http://localhost:8080/project-1/login'), body);
 
