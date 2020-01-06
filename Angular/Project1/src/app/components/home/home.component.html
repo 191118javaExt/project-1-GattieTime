@@ -5,6 +5,45 @@
 <br>
 
 <div>
+    <button (click)="showReim = !showReim; getUserReim()"  class="btn btn-primary">{{showReim ? 'Hide Reimbursments' : 'Show Reimbursments'}}</button>
+</div>
+<div *ngIf="showReim">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID #</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Type</th>
+                <th scope="col">Submission Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Resolution Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of reimbursements">
+                <td>{{r.id}}</td>
+                <td>{{r.amount | currency:'USD':'symbol':'1.2-2'}}</td>
+                <td [ngSwitch]="r.type">
+                    <span *ngSwitchCase="1">Lodging</span>
+                    <span *ngSwitchCase="2">Travel</span>
+                    <span *ngSwitchCase="3">Food</span>
+                    <span *ngSwitchCase="4">Other</span>
+                    <span *ngSwitchDefault>Other</span>
+                </td>
+                <td>{{r.submit | date:'full'}}</td>
+                <td [ngSwitch]="r.status">
+                    <span *ngSwitchCase="1">Pending</span>
+                    <span *ngSwitchCase="2">Approved</span>
+                    <span *ngSwitchCase="3">Denied</span>
+                    <span *ngSwitchDefault>Pending</span>
+                </td>
+                <td *ngIf="r.resolved != null">{{r.resolved | date:'full'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<div>
     <button (click)="newReim = !newReim" class="btn btn-primary">{{newReim ? 'Hide Form' : 'Submit New Reimbursment'}}</button>
 </div>
 

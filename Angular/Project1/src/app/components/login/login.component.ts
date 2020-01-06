@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   sendLogin() {this.us.login(this.username, this.password).subscribe(
       (response:User) => {
         sessionStorage.setItem('currentUser', JSON.stringify(response));
-        console.log(response);
         this.router.navigate(['/home']);
       }
     )

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { ReimbursementService } from 'src/app/services/reimbursement.service';
+import { Reimbursement } from 'src/app/models/reimbursement';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
   description: string = '';
   type: number = 0;
 
+  reimbursements: any[];
   currentUser: User;
   constructor(private rs: ReimbursementService, private router: Router) { }
   
@@ -35,6 +37,16 @@ export class HomeComponent implements OnInit {
       (response:void) => { console.log("reimbursement sent")}
     );
 
+  }
+
+  getUserReim() {
+    this.rs.getUserReim(this.currentUser.id).subscribe(
+      (response:any[]) => {
+        console.log(response);
+       this.reimbursements=response;
+      }
+    )
+    console.log(this.reimbursements)
   }
 
 

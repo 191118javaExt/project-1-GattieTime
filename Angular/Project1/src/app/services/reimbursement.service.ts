@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Reimbursement } from '../models/reimbursement';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReimbursementService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -17,9 +20,16 @@ export class ReimbursementService {
     }
 
     return this.http.post<void>(('http://localhost:8080/project-1/newreim'), body);
-
-    
   }
+
+  getUserReim(id: number): Observable<Reimbursement[]> {
+    let body = {
+      id: id
+    }
+    return this.http.post<Reimbursement[]>(('http://localhost:8080/project-1/getuserreim'), body);
+  }
+
+  
 
 
 }
