@@ -2,13 +2,16 @@ package com.revature.services;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.models.ReceiptTemplate;
 import com.revature.models.ReimbursementTemplate;
 import com.revature.models.Reinbursement;
 import com.revature.models.User;
+import com.revature.models.UserIdTemplate;
 import com.revature.repositories.ReinburseDAO;
 import com.revature.repositories.ReinburseDAOImpl;
 
@@ -48,6 +51,21 @@ public class ReinbursService {
 		
 		
 		
+	}
+
+	public static List<Reinbursement> getUserReimburs(UserIdTemplate u) {
+		ReinburseDAO rDAO = new ReinburseDAOImpl();
+		List<Reinbursement> result = rDAO.findByUserId(u.getId());
+		return result;
+	}
+
+	public static boolean newReceipt(ReceiptTemplate rt) {
+		ReinburseDAO rDAO = new ReinburseDAOImpl();
+		if(rDAO.updateReceipt(rt)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	

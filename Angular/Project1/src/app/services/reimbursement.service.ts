@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Reimbursement } from '../models/reimbursement';
 import { Observable } from 'rxjs';
@@ -16,7 +16,7 @@ export class ReimbursementService {
       userId: userId,
       amount: amount,
       description: description,
-      type: type
+      type: type,
     }
 
     return this.http.post<void>(('http://localhost:8080/project-1/newreim'), body);

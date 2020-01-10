@@ -72,7 +72,22 @@
                <option value="4">Other</option>
            </select>
         </div>
+        <label class="image-upload-container btn btn-bwm">
+            <span>Upload Reciet Image: </span>
+            <input #imageInput
+                   type="file"
+                   accept="image/*"
+                   (change)="processFile(imageInput)">
+          </label>
         <button (click)="sendReim()" class="btn btn-secondary">Submit</button>
     </form>
     
 </div>
+
+<!-- <label class="image-upload-container btn btn-bwm">
+    <span>Select Image</span>
+    <input #imageInput
+           type="file"
+           accept="image/*"
+           (change)="processFile(imageInput)">
+  </label> -->

@@ -30,6 +30,12 @@ public class ControllerServlet extends HttpServlet {
 			case "newreim":
 				HelperUtil.newReim(req, res);
 				break;
+			case "getuserreim":
+				HelperUtil.getUserReim(req, res);
+				break;
+			case "receipt":
+				HelperUtil.storeReceipt(req, res);
+				break;
 			
 		}
 	}

@@ -3,6 +3,7 @@ package com.revature.utils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.LoginTemplate;
+import com.revature.models.ReceiptTemplate;
 import com.revature.models.ReimbursementTemplate;
+import com.revature.models.Reinbursement;
 import com.revature.models.User;
+import com.revature.models.UserIdTemplate;
 import com.revature.services.ReinbursService;
 import com.revature.services.UserService;
 
@@ -56,6 +60,7 @@ public class HelperUtil {
 			res.setStatus(201);
 		}
 		
+		
 	}
 	
 	private static String readReq(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -69,6 +74,35 @@ public class HelperUtil {
 		
 		String body = s.toString();
 		return body;
+	}
+
+	public static void getUserReim(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String body = readReq(req, res);
+		UserIdTemplate u = om.readValue(body, UserIdTemplate.class);
+		
+		List<Reinbursement> result = ReinbursService.getUserReimburs(u);
+		
+		if(result != null) {
+			PrintWriter out = res.getWriter();
+			res.setContentType("application/json");
+			out.println(om.writeValueAsString(result));
+		} else {
+			res.setContentType("application/json");
+			res.setStatus(204);
+		}
+		
+	}
+
+	public static void storeReceipt(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println(req);
+		String body = readReq(req, res);
+		ReceiptTemplate rt = om.readValue(body, ReceiptTemplate.class);
+		
+		if (ReinbursService.newReceipt(rt)) {
+			res.setContentType("application/json");
+			res.setStatus(201);
+		}
+		
 	}
 
 }

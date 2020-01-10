@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   reimbursements: any[];
   currentUser: User;
+  selectedFile: any = null;
   constructor(private rs: ReimbursementService, private router: Router) { }
   
   
@@ -48,5 +49,10 @@ export class HomeComponent implements OnInit {
     console.log(this.reimbursements)
   }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    this.selectedFile = file;
+    console.log(this.selectedFile);
+  }
 
 }

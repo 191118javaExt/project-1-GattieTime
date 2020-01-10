@@ -8,17 +8,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+import com.revature.models.ReceiptTemplate;
 import com.revature.models.Reinbursement;
 import com.revature.utils.ConnectionUtil;
 
 public class ReinburseDAOImpl implements ReinburseDAO {
 
-	//Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
+	// Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
 
 	@Override
 	public List<Reinbursement> findAll() {
@@ -37,7 +40,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				String descript = rs.getString("descript");
 				InputStream receipt = rs.getBinaryStream("receipt");
 				int author = rs.getInt("author");
-				int resolver = rs.getInt("resovler");
+				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
 				int type = rs.getInt("rein_type");
 
@@ -49,7 +52,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			//logger.warn("Unable to retrieve all reimbursements", e);
+			// logger.warn("Unable to retrieve all reimbursements", e);
 
 		}
 		return list;
@@ -73,7 +76,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				String descript = rs.getString("descript");
 				InputStream receipt = rs.getBinaryStream("receipt");
 				int author = rs.getInt("author");
-				int resolver = rs.getInt("resovler");
+				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
 				int type = rs.getInt("rein_type");
 
@@ -82,7 +85,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			//logger.warn("Unable to retrieve all reimbursements", e);
+			// logger.warn("Unable to retrieve all reimbursements", e);
 
 		}
 		return r;
@@ -91,13 +94,13 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 	@Override
 	public boolean updateReinburse(Reinbursement r) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			
+
 			PreparedStatement stmt;
 
 			if (r.getReceipt() == null) {
-				String sql = "UPDATE reinburs SET amount = ?, submit = ?, resolved = ?, descript = ?, author = ?, resovler = ?, status = ?, rein_type = ? Where id = ?;";
+				String sql = "UPDATE reinburs SET amount = ?, submit = ?, resolved = ?, descript = ?, author = ?, resolver = ?, status = ?, rein_type = ? Where id = ?;";
 
-				stmt  = conn.prepareStatement(sql);
+				stmt = conn.prepareStatement(sql);
 				stmt.setDouble(1, r.getAmount());
 				stmt.setTimestamp(2, r.getSubmit());
 				stmt.setTimestamp(3, r.getResolved());
@@ -106,9 +109,10 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				stmt.setInt(6, r.getResolver());
 				stmt.setInt(7, r.getStatus());
 				stmt.setInt(8, r.getType());
+				stmt.setInt(9, r.getId());
 			} else {
 
-				String sql = "UPDATE reinburs SET amount = ?, submit = ?, resolved = ?, descript = ?, receipt = ?, author = ?, resovler = ?, status = ?, rein_type = ? Where id = ?;";
+				String sql = "UPDATE reinburs SET amount = ?, submit = ?, resolved = ?, descript = ?, receipt = ?, author = ?, resolver = ?, status = ?, rein_type = ? Where id = ?;";
 
 				stmt = conn.prepareStatement(sql);
 				stmt.setDouble(1, r.getAmount());
@@ -120,15 +124,16 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				stmt.setInt(7, r.getResolver());
 				stmt.setInt(8, r.getStatus());
 				stmt.setInt(9, r.getType());
+				stmt.setInt(10, r.getId());
 			}
-			
+
 			if (!stmt.execute()) {
-				//logger.warn("Reinbursement update failed to execute.");
+				// logger.warn("Reimbursement update failed to execute.");
 				return false;
 			}
 
 		} catch (SQLException ex) {
-			//logger.warn("Unable to update reimbursement.", ex);
+			// logger.warn("Unable to update reimbursement.", ex);
 		}
 		return true;
 	}
@@ -144,7 +149,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			stmt.setDouble(1, r.getAmount());
 			stmt.setTimestamp(2, r.getSubmit());
 			stmt.setString(3, r.getDescript());
-			//stmt.setBinaryStream(4, r.getReceipt());
+			// stmt.setBinaryStream(4, r.getReceipt());
 			stmt.setInt(4, r.getAuthor());
 			stmt.setInt(5, r.getStatus());
 			stmt.setInt(6, r.getType());
@@ -152,10 +157,79 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			stmt.execute();
 
 		} catch (SQLException ex) {
-			//logger.warn("Unable to insert reimbursement.", ex);
+			// logger.warn("Unable to insert reimbursement.", ex);
 			System.out.println(ex);
 		}
 		return true;
+	}
+
+	@Override
+	public List<Reinbursement> findByUserId(int userId) {
+		List<Reinbursement> list = new ArrayList<>();
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT * FROM reinburs WHERE author = ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, userId);
+
+			Timestamp submit;
+			Timestamp resolved;
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				Double amount = rs.getDouble("amount");
+				if (rs.getTimestamp("submit") != null) {
+					submit = rs.getTimestamp("submit");
+				} else {
+					submit = null;
+				}
+				if (rs.getTimestamp("resolved") != null) {
+					resolved = rs.getTimestamp("resolved");
+				} else {
+					resolved = null;
+				}
+				String descript = rs.getString("descript");
+				InputStream receipt = null; // rs.getBinaryStream("receipt");
+				int author = rs.getInt("author");
+				int resolver = rs.getInt("resolver");
+				int status = rs.getInt("status");
+				int type = rs.getInt("rein_type");
+
+				Reinbursement r = new Reinbursement(id, amount, submit, resolved, descript, receipt, author, resolver,
+						status, type);
+
+				list.add(r);
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			// logger.warn("Unable to retrieve all reimbursements", e);
+			System.out.println(e);
+		}
+		return list;
+	}
+
+	@Override
+	public boolean updateReceipt(ReceiptTemplate rt) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+
+			PreparedStatement stmt;
+			String sql = "UPDATE reinburs SET receipt = ? Where id = ?;";
+
+			stmt = conn.prepareStatement(sql);
+			stmt.setBytes(1, Base64.getEncoder().encode(rt.receiptDataURL.getBytes()));
+			stmt.setInt(2, rt.id);
+
+			if (!stmt.execute()) {
+				// logger.warn("Reimbursement update failed to execute.");
+				return false;
+			}
+
+		} catch (SQLException ex) {
+			// logger.warn("Unable to update reimbursement.", ex);
+		}
+		return true;
+
 	}
 
 }
