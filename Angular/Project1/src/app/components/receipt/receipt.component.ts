@@ -11,7 +11,9 @@ import { User } from 'src/app/models/user';
 })
 export class ReceiptComponent {
   receiptDataURL: string | ArrayBuffer;
+  ReceiptReimId: number;
   currentUser: User;
+
 
   constructor(private is: ImageService, private router: Router) { }
 
@@ -36,7 +38,7 @@ export class ReceiptComponent {
   }
 
   sendReceipt() {
-    this.is.uploadReceipt(this.currentUser.id, this.receiptDataURL).subscribe(
+    this.is.uploadReceipt(this.ReceiptReimId, this.receiptDataURL).subscribe(
 
     )
   }
