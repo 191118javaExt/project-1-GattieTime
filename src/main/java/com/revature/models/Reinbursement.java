@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import java.io.InputStream;
 import java.sql.Timestamp;
 
 
@@ -11,7 +10,7 @@ public class Reinbursement {
 	private Timestamp submit;
 	private Timestamp resolved;
 	private String descript;
-	private InputStream receipt;
+	private String receipt;
 	private int author;
 	private String authorName;
 	private int resolver;
@@ -22,7 +21,7 @@ public class Reinbursement {
 	private String typeName;
 	
 	public Reinbursement(int id, double amount, Timestamp submit, Timestamp resolved, String descript,
-			InputStream receipt, int author, int status, int type) {
+			String receipt, int author, int status, int type) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -36,7 +35,7 @@ public class Reinbursement {
 	}
 
 	public Reinbursement(int id, double amount, Timestamp submit, Timestamp resolved, String descript,
-			InputStream receipt, int author, int resolver, int status, int type) {
+			String receipt, int author, int resolver, int status, int type) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -52,7 +51,7 @@ public class Reinbursement {
 	
 	
 
-	public Reinbursement(double amount, Timestamp submit, String descript, InputStream receipt, int author,
+	public Reinbursement(double amount, Timestamp submit, String descript, String receipt, int author,
 			 int status, int type) {
 		super();
 		this.amount = amount;
@@ -105,11 +104,11 @@ public class Reinbursement {
 		this.descript = descript;
 	}
 
-	public InputStream getReceipt() {
+	public String getReceipt() {
 		return receipt;
 	}
 
-	public void setReceipt(InputStream receipt) {
+	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
 

@@ -38,7 +38,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				Timestamp submit = rs.getTimestamp("submit");
 				Timestamp resolved = rs.getTimestamp("resolved");
 				String descript = rs.getString("descript");
-				InputStream receipt = rs.getBinaryStream("receipt");
+				String receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
 				int author = rs.getInt("author");
 				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
@@ -74,7 +74,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				Timestamp submit = rs.getTimestamp("submit");
 				Timestamp resolved = rs.getTimestamp("resolved");
 				String descript = rs.getString("descript");
-				InputStream receipt = rs.getBinaryStream("receipt");
+				String receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
 				int author = rs.getInt("author");
 				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
@@ -119,7 +119,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				stmt.setTimestamp(2, r.getSubmit());
 				stmt.setTimestamp(3, r.getResolved());
 				stmt.setString(4, r.getDescript());
-				stmt.setBinaryStream(5, r.getReceipt());
+				stmt.setBytes(5, Base64.getEncoder().encode(r.getReceipt().getBytes()));
 				stmt.setInt(6, r.getAuthor());
 				stmt.setInt(7, r.getResolver());
 				stmt.setInt(8, r.getStatus());
@@ -149,7 +149,6 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			stmt.setDouble(1, r.getAmount());
 			stmt.setTimestamp(2, r.getSubmit());
 			stmt.setString(3, r.getDescript());
-			// stmt.setBinaryStream(4, r.getReceipt());
 			stmt.setInt(4, r.getAuthor());
 			stmt.setInt(5, r.getStatus());
 			stmt.setInt(6, r.getType());
@@ -174,6 +173,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 
 			Timestamp submit;
 			Timestamp resolved;
+			String receipt;
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("id");
@@ -189,7 +189,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 					resolved = null;
 				}
 				String descript = rs.getString("descript");
-				InputStream receipt = null; // rs.getBinaryStream("receipt");
+				receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
 				int author = rs.getInt("author");
 				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
