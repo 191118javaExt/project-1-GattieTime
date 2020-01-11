@@ -8,4 +8,5 @@ export class Reimbursement {
     public resolver: number;
     public status: number;
     public type: number;
+    public receipt: string;
 }

@@ -17,6 +17,7 @@
                 <th scope="col">Submission Date</th>
                 <th scope="col">Status</th>
                 <th scope="col">Resolution Date</th>
+                <th scope="col">Receipt Submitted</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,10 @@
                     <span *ngSwitchDefault>Pending</span>
                 </td>
                 <td *ngIf="r.resolved != null">{{r.resolved | date:'full'}}</td>
+                <td *ngIf="r.resolved == null"></td>
+                <td *ngIf='r.receipt != null'>
+                    <button name="reimRec" value={{r.id}} (click)="showRec($event)" class="btn btn-secondary">Show</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -72,13 +77,6 @@
                <option value="4">Other</option>
            </select>
         </div>
-        <label class="image-upload-container btn btn-bwm">
-            <span>Upload Reciet Image: </span>
-            <input #imageInput
-                   type="file"
-                   accept="image/*"
-                   (change)="processFile(imageInput)">
-          </label>
         <button (click)="sendReim()" class="btn btn-secondary">Submit</button>
     </form>
     

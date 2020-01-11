@@ -189,7 +189,11 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 					resolved = null;
 				}
 				String descript = rs.getString("descript");
+				if(rs.getBytes("receipt") != null) {
 				receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				} else {
+					receipt = null;
+				}
 				int author = rs.getInt("author");
 				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
