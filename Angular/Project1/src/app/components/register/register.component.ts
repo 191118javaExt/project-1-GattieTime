@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
   newUser() {
     if(this.password != this.confirmpass){
-      document.getElementById("warning").innerHTML = "Your password do not match, please try again.";
+      document.getElementById("warning").innerHTML = "Your passwords do not match, please try again.";
     } else {
       this.us.newUser(this.username, this.password, this.first, this.last, this.email).subscribe();
       this.router.navigate(['/login']);

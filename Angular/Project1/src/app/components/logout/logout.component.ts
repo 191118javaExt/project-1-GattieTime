@@ -10,6 +10,8 @@ export class LogoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    window.sessionStorage.clear();
+    window.localStorage.clear();
   }
 
 }
