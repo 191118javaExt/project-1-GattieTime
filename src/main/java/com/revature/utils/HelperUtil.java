@@ -28,7 +28,9 @@ import com.revature.services.UserService;
 public class HelperUtil {
 
 	private static ObjectMapper om = new ObjectMapper();
-
+	static ReinbursService rs = new ReinbursService();
+	static  UserService us = new  UserService();
+	
 	public static void login(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		String body = readReq(req, res);
@@ -39,7 +41,7 @@ public class HelperUtil {
 		String password = String.valueOf(loginAttempt.getPassword().hashCode());
 
 		// logger.info("User attempted to log in with username: " + username);
-		User u = UserService.confirmLogin(username, password);
+		User u =us.confirmLogin(username, password);
 		if (u != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
@@ -60,7 +62,7 @@ public class HelperUtil {
 		String body = readReq(req, res);
 		ReimbursementTemplate rt = om.readValue(body, ReimbursementTemplate.class);
 
-		if (ReinbursService.newReimburs(rt)) {
+		if (rs.newReimburs(rt)) {
 			res.setContentType("application/json");
 			res.setStatus(201);
 		}
@@ -86,7 +88,7 @@ public class HelperUtil {
 		String body = readReq(req, res);
 		UserIdTemplate u = om.readValue(body, UserIdTemplate.class);
 
-		List<Reinbursement> result = ReinbursService.getUserReimburs(u);
+		List<Reinbursement> result = rs.getUserReimburs(u);
 
 		if (result != null) {
 			PrintWriter out = res.getWriter();
@@ -104,7 +106,7 @@ public class HelperUtil {
 		String body = readReq(req, res);
 		ReceiptTemplate rt = om.readValue(body, ReceiptTemplate.class);
 
-		if (ReinbursService.newReceipt(rt)) {
+		if (rs.newReceipt(rt)) {
 			res.setContentType("application/json");
 			res.setStatus(201);
 		}
@@ -115,7 +117,7 @@ public class HelperUtil {
 		String body = readReq(req, res);
 		FindReimTemplate frt = om.readValue(body, FindReimTemplate.class);
 		
-		List<Reinbursement> result = ReinbursService.getReimburs(frt);
+		List<Reinbursement> result = rs.getReimburs(frt);
 
 		if (result != null) {
 			PrintWriter out = res.getWriter();
@@ -139,7 +141,7 @@ public class HelperUtil {
 			res.setContentType("application/json");
 			res.setStatus(403);
 		} else {
-			if(ReinbursService.approval(at, r)) {
+			if(rs.approval(at, r)) {
 				res.setContentType("application/json");
 				res.setStatus(202);
 			} else {
@@ -156,7 +158,7 @@ public class HelperUtil {
 		NewUserTemplate nut = om.readValue(body, NewUserTemplate.class);
 		System.out.println(nut);
 		
-		if(UserService.newUser(nut)) {
+		if(us.newUser(nut)) {
 			res.setContentType("application/json");
 			res.setStatus(201);
 		} else {

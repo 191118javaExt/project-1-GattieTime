@@ -19,14 +19,26 @@ import com.revature.repositories.ReinburseDAO;
 import com.revature.repositories.ReinburseDAOImpl;
 
 public class ReinbursService {
-	private static Logger logger = LogManager.getLogger(ReinbursService.class);
+	private static final Logger logger = LogManager.getLogger(ReinbursService.class);
+	
+	
+	
+	public ReinbursService() {
+		super();
+	}
 
-	public static boolean reinbursResolve(User u, Reinbursement r, int i) {
+	public ReinbursService(ReinburseDAO rDAO) {
+		super();
+		this.rDAO = rDAO;
+	}
+
+	ReinburseDAO rDAO = new ReinburseDAOImpl();
+
+	public boolean reinbursResolve(User u, Reinbursement r, int i) {
 		r.setStatus(i);
 		r.setResolver(u.getId());
 		LocalDateTime dt = LocalDateTime.now();
 		r.setResolved(Timestamp.valueOf(dt));
-		ReinburseDAOImpl rDAO = new ReinburseDAOImpl();
 		if (rDAO.updateReinburse(r)) {
 			logger.info("Reinbursement " + r.getId() + " was resolved by user " + u.getId() + ".");
 			return true;
@@ -36,11 +48,10 @@ public class ReinbursService {
 		}
 	}
 
-	public static boolean newReimburs(ReimbursementTemplate rt) {
+	public boolean newReimburs(ReimbursementTemplate rt) {
 		Reinbursement r = new Reinbursement(rt.getAmount(), Timestamp.valueOf(LocalDateTime.now()), rt.getDescription(),
 				null, rt.getUserId(), 1, rt.getType());
 
-		ReinburseDAO rDAO = new ReinburseDAOImpl();
 		if (rDAO.insertReinburse(r)) {
 			return true;
 		} else {
@@ -49,14 +60,14 @@ public class ReinbursService {
 
 	}
 
-	public static List<Reinbursement> getUserReimburs(UserIdTemplate u) {
-		ReinburseDAO rDAO = new ReinburseDAOImpl();
+	public List<Reinbursement> getUserReimburs(UserIdTemplate u) {
+		
 		List<Reinbursement> result = rDAO.findByUserId(u.getId());
 		return result;
 	}
 
-	public static boolean newReceipt(ReceiptTemplate rt) {
-		ReinburseDAO rDAO = new ReinburseDAOImpl();
+	public boolean newReceipt(ReceiptTemplate rt) {
+		
 		if (rDAO.updateReceipt(rt)) {
 			return true;
 		} else {
@@ -64,9 +75,9 @@ public class ReinbursService {
 		}
 	}
 
-	public static List<Reinbursement> getReimburs(FindReimTemplate frt) {
+	public List<Reinbursement> getReimburs(FindReimTemplate frt) {
 		List<Reinbursement> result = new ArrayList<>();
-		ReinburseDAO rDAO = new ReinburseDAOImpl();
+		
 		if (frt.getStatus() == 1) {
 			result = rDAO.findAll();
 		} else {
@@ -75,15 +86,17 @@ public class ReinbursService {
 		return result;
 	}
 
-	public static boolean approval(ApprovalTemplate at, Reinbursement r) {
+	public boolean approval(ApprovalTemplate at, Reinbursement r) {
 		r.setResolved(Timestamp.valueOf(LocalDateTime.now()));
 		r.setResolver(at.getApprover());
 		r.setStatus((at.getApproval())+1);
 		
-		ReinburseDAO rDAO = new ReinburseDAOImpl();
+		
 		if(rDAO.updateReinburse(r)) {
+			logger.info("Reinbursement " + r.getId() + " was resolved by user " + at.getApprover() + ".");
 			return true;
 		} else {
+			logger.info("Reinbursement " + r.getId() + " failed to be updated.");
 			return false;
 		}
 		

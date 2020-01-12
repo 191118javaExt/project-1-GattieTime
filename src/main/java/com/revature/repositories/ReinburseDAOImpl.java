@@ -1,6 +1,5 @@
 package com.revature.repositories;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +19,7 @@ import com.revature.utils.ConnectionUtil;
 
 public class ReinburseDAOImpl implements ReinburseDAO {
 
-	// Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
+	private static final Logger logger = LogManager.getLogger(ReinburseDAOImpl.class);
 
 	@Override
 	public List<Reinbursement> findAll() {
@@ -66,7 +65,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			// logger.warn("Unable to retrieve all reimbursements", e);
+			logger.warn("Unable to retrieve all reimbursements", e);
 
 		}
 		return list;
@@ -114,7 +113,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			// logger.warn("Unable to retrieve all reimbursements", e);
+			logger.warn("Unable to retrieve all reimbursements", e);
 
 		}
 		return r;
@@ -157,12 +156,12 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			}
 
 			if (!stmt.execute()) {
-				// logger.warn("Reimbursement update failed to execute.");
+				logger.warn("Reimbursement update failed to execute.");
 				return false;
 			}
 
 		} catch (SQLException ex) {
-			// logger.warn("Unable to update reimbursement.", ex);
+			logger.warn("Unable to update reimbursement.", ex);
 		}
 		return true;
 	}
@@ -185,7 +184,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			stmt.execute();
 
 		} catch (SQLException ex) {
-			// logger.warn("Unable to insert reimbursement.", ex);
+			logger.warn("Unable to insert reimbursement.", ex);
 			System.out.println(ex);
 		}
 		return true;
@@ -236,7 +235,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			// logger.warn("Unable to retrieve all reimbursements", e);
+			logger.warn("Unable to retrieve all reimbursements", e);
 			System.out.println(e);
 		}
 		return list;
@@ -254,12 +253,12 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			stmt.setInt(2, rt.id);
 
 			if (!stmt.execute()) {
-				// logger.warn("Reimbursement update failed to execute.");
+				logger.warn("Reimbursement update failed to execute.");
 				return false;
 			}
 
 		} catch (SQLException ex) {
-			// logger.warn("Unable to update reimbursement.", ex);
+			logger.warn("Unable to update reimbursement.", ex);
 		}
 		return true;
 
@@ -310,7 +309,7 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			// logger.warn("Unable to retrieve all reimbursements", e);
+			logger.warn("Unable to retrieve all reimbursements", e);
 			System.out.println(e);
 		}
 		return list;

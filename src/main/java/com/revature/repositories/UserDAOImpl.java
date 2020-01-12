@@ -16,7 +16,7 @@ import com.revature.utils.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAO {
 	
-	Logger logger = LogManager.getLogger(UserDAOImpl.class);
+	private static final Logger logger = LogManager.getLogger(UserDAOImpl.class);
 
 	@Override
 	public List<User> findAll() {

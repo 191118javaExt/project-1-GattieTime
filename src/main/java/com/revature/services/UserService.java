@@ -10,12 +10,25 @@ import com.revature.repositories.UserDAOImpl;
 
 public class UserService {
 
-	private static Logger logger = LogManager.getLogger(UserService.class);
+	private static final Logger logger = LogManager.getLogger(UserService.class);
+	
+	
+	
+	public UserService() {
+		super();
+	}
 
-	public static User confirmLogin(String username, String password) {
+	public UserService(UserDAO uDAO) {
+		super();
+		this.uDAO = uDAO;
+	}
+
+	static UserDAO uDAO = new UserDAOImpl();
+
+	public User confirmLogin(String username, String password) {
 		User u = null;
 		
-		UserDAO uDAO = new UserDAOImpl();
+		
 		u = uDAO.findByName(username);
 		
 		if (u == null) {
@@ -29,14 +42,13 @@ public class UserService {
 		} else {
 			logger.info("User tried to log in with user name "+username+" that does not exist.");
 		}
-		System.out.println(u);
 		return u;
 	}
 
-	public static boolean newUser(NewUserTemplate nut) {
+	public boolean newUser(NewUserTemplate nut) {
 		User u = new User(nut.name, String.valueOf(nut.password.hashCode()), nut.firstName, nut.lastName, nut.email, 1);
-		System.out.println(u);
-		UserDAO uDAO = new UserDAOImpl();
+
+		
 		if(uDAO.insertUser(u)) {
 			return true;
 		}else {return false;}

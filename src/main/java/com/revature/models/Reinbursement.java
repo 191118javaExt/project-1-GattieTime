@@ -63,6 +63,11 @@ public class Reinbursement {
 		this.type = type;
 	}
 
+	
+
+	public Reinbursement() {
+		super();
+	}
 
 	public int getId() {
 		return id;
