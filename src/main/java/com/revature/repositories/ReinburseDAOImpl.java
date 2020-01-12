@@ -155,13 +155,11 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 				stmt.setInt(10, r.getId());
 			}
 
-			if (!stmt.execute()) {
-				logger.warn("Reimbursement update failed to execute.");
-				return false;
-			}
+			stmt.execute();
 
 		} catch (SQLException ex) {
 			logger.warn("Unable to update reimbursement.", ex);
+			return false;
 		}
 		return true;
 	}

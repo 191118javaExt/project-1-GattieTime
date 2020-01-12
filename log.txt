@@ -416,3 +416,10 @@ org.postgresql.util.PSQLException: ERROR: insert or update on table "reinburs" v
 2020-01-12 18:07:32 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
 2020-01-12 18:07:32 INFO  UserService:43 - User tried to log in with user name test that does not exist.
 2020-01-12 18:07:32 INFO  UserService:40 - User using username test failed to log in.
+2020-01-12 18:23:37 DEBUG ControllerServlet:30 - login request recieved
+2020-01-12 18:23:47 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:24:03 DEBUG ControllerServlet:50 - approval request recieved
+2020-01-12 18:24:03 WARN  ReinburseDAOImpl:159 - Reimbursement update failed to execute.
+2020-01-12 18:24:03 INFO  ReinbursService:99 - Reinbursement 4 failed to be updated.
+2020-01-12 18:35:54 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:35:54 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
