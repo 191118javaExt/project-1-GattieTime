@@ -52,6 +52,6 @@ export class ManagerComponent implements OnInit {
   }
 
   reimApp(){
-    this.rs.reimApp(this.reimId, this.approval, this.currentUser.id).subscribe;
+    this.rs.reimApp(this.reimId, this.approval, this.currentUser.id).subscribe()
   };
 }

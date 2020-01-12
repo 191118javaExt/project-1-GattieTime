@@ -37,7 +37,6 @@ export class UserService {
       lastName: last,
       email: email
     }
-    console.log(body)
     return this.http.post<void>("http://localhost:8080/project-1/register", body);
   }
 

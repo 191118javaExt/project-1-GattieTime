@@ -45,17 +45,14 @@ export class HomeComponent implements OnInit {
   getUserReim() {
     this.rs.getUserReim(this.currentUser.id).subscribe(
       (response:Reimbursement[]) => {
-        console.log(response);
        this.reimbursements=response;
       }
     )
-    console.log(this.reimbursements)
   }
 
   processFile(imageInput: any) {
     const file: File = imageInput.files[0];
     this.selectedFile = file;
-    console.log(this.selectedFile);
   }
 
   showRec(e){
@@ -65,10 +62,7 @@ export class HomeComponent implements OnInit {
         image.src = r.receipt;
         let w = window.open("");
         w.document.write(image.outerHTML);
-
-
       }
-      
     }
   }
 

@@ -38,11 +38,7 @@ export class ReceiptComponent {
   }
 
   sendReceipt() {
-    this.is.uploadReceipt(this.ReceiptReimId, this.receiptDataURL).subscribe(
-     
-
-    )
-    console.log(this.receiptDataURL);
+    this.is.uploadReceipt(this.ReceiptReimId, this.receiptDataURL).subscribe()
   }
 
   
