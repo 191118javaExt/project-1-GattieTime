@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.ApprovalTemplate;
 import com.revature.models.FindReimTemplate;
 import com.revature.models.LoginTemplate;
+import com.revature.models.NewUserTemplate;
 import com.revature.models.ReceiptTemplate;
 import com.revature.models.ReimbursementTemplate;
 import com.revature.models.Reinbursement;
@@ -35,7 +36,7 @@ public class HelperUtil {
 		LoginTemplate loginAttempt = om.readValue(body, LoginTemplate.class);
 
 		String username = loginAttempt.getUsername();
-		String password = loginAttempt.getPassword();
+		String password = String.valueOf(loginAttempt.getPassword().hashCode());
 
 		// logger.info("User attempted to log in with username: " + username);
 		User u = UserService.confirmLogin(username, password);
@@ -147,6 +148,21 @@ public class HelperUtil {
 			}
 		}
 		
+		
+	}
+
+	public static void register(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String body = readReq(req, res);
+		NewUserTemplate nut = om.readValue(body, NewUserTemplate.class);
+		System.out.println(nut);
+		
+		if(UserService.newUser(nut)) {
+			res.setContentType("application/json");
+			res.setStatus(201);
+		} else {
+			res.setContentType("application/json");
+			res.setStatus(204);
+		}
 		
 	}
 

@@ -42,6 +42,10 @@ public class ControllerServlet extends HttpServlet {
 			case "approve":
 				HelperUtil.approve(req, res);
 				break;
+			case "register":
+				System.out.println("Register");
+				HelperUtil.register(req, res);
+				break;
 			
 		}
 	}

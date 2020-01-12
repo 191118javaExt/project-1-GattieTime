@@ -78,7 +78,7 @@ public class ReinbursService {
 	public static boolean approval(ApprovalTemplate at, Reinbursement r) {
 		r.setResolved(Timestamp.valueOf(LocalDateTime.now()));
 		r.setResolver(at.getApprover());
-		r.setStatus((at.getApproval())-1);
+		r.setStatus((at.getApproval())+1);
 		
 		ReinburseDAO rDAO = new ReinburseDAOImpl();
 		if(rDAO.updateReinburse(r)) {

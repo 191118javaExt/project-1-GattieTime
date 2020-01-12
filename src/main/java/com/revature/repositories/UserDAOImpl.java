@@ -154,12 +154,13 @@ public class UserDAOImpl implements UserDAO {
 
 			stmt.execute();
 			
-			//TODO set role name
+
 
 		} catch (SQLException ex) {
 			logger.warn("Unable to insert user.", ex);
 			return false;
 		}
+		System.out.println("looking good");
 		return true;
 	}
 

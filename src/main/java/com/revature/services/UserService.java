@@ -3,6 +3,7 @@ package com.revature.services;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.models.NewUserTemplate;
 import com.revature.models.User;
 import com.revature.repositories.UserDAO;
 import com.revature.repositories.UserDAOImpl;
@@ -13,10 +14,10 @@ public class UserService {
 
 	public static User confirmLogin(String username, String password) {
 		User u = null;
-		System.out.println(u);
+		
 		UserDAO uDAO = new UserDAOImpl();
 		u = uDAO.findByName(username);
-		System.out.println(u);
+		
 		if (u == null) {
 			u = uDAO.findByEmail(username);
 		}
@@ -30,6 +31,15 @@ public class UserService {
 		}
 		System.out.println(u);
 		return u;
+	}
+
+	public static boolean newUser(NewUserTemplate nut) {
+		User u = new User(nut.name, String.valueOf(nut.password.hashCode()), nut.firstName, nut.lastName, nut.email, 1);
+		System.out.println(u);
+		UserDAO uDAO = new UserDAOImpl();
+		if(uDAO.insertUser(u)) {
+			return true;
+		}else {return false;}
 	}
 
 }

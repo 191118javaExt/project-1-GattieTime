@@ -29,5 +29,17 @@ export class UserService {
     return this.http.post<void>("http://localhost:8080/project-1/logout", {});
   }
 
+  newUser(username: string, password: string, first: string, last: string, email: string){
+    let body: any = {
+      name: username,
+      password: password,
+      firstName: first,
+      lastName: last,
+      email: email
+    }
+    console.log(body)
+    return this.http.post<void>("http://localhost:8080/project-1/register", body);
+  }
+
 
 }

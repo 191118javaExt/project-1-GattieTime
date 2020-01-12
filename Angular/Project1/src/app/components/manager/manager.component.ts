@@ -3,6 +3,7 @@ import { Reimbursement } from 'src/app/models/reimbursement';
 import { User } from 'src/app/models/user';
 import { ReimbursementService } from 'src/app/services/reimbursement.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manager',
@@ -51,8 +52,6 @@ export class ManagerComponent implements OnInit {
   }
 
   reimApp(){
-    this.rs.reimApp(this.reimId, this.approval, this.currentUser.id){
-      
-    }
-  }
+    this.rs.reimApp(this.reimId, this.approval, this.currentUser.id).subscribe;
+  };
 }
