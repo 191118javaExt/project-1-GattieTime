@@ -12,4 +12,5 @@ public interface ReinburseDAO {
 	public boolean updateReinburse(Reinbursement r);
 	public boolean insertReinburse(Reinbursement r);
 	public boolean updateReceipt(ReceiptTemplate rt);
+	public List<Reinbursement> findByStatus(int status);
 }

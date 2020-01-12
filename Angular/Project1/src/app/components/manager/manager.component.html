@@ -12,16 +12,19 @@
     
     
   </nav>
-
-
-<div>
-    <h1>Welcome {{currentUser.firstName}} {{currentUser.lastName}}.</h1>
-</div>
+  <br>
+  <p>What is the status of the Reimbursments you would like to display?</p>
+  <select [(ngModel)]="status" name="callStatus" class="electpicker">
+    <option value="1">All</option>
+    <option value="2">Pending</option>
+    <option value="3">Approved</option>
+    <option value="4">Denied</option>
+  </select>
 <br>
 <br>
 
 <div>
-    <button (click)="showReim = !showReim; getUserReim()"  class="btn btn-primary">{{showReim ? 'Hide Reimbursments' : 'Show Reimbursments'}}</button>
+    <button (click)="showReim = !showReim; getReim()"  class="btn btn-primary">{{showReim ? 'Hide Reimbursments' : 'Show Reimbursments'}}</button>
 </div>
 <div *ngIf="showReim">
     <table class="table">
@@ -62,40 +65,23 @@
             </tr>
         </tbody>
     </table>
-    <app-receipt></app-receipt>
 </div>
 <br>
-<div>
-    <button (click)="newReim = !newReim" class="btn btn-primary">{{newReim ? 'Hide Form' : 'Submit New Reimbursment'}}</button>
-</div>
-
-<div *ngIf="newReim">
-    <form>
-        <div class="input-group mb-6">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Amount $:</span>
-            </div>
-           <input [(ngModel)]="amount" name="newReimAmount" type="number" min="0" step="0.01" placeholder="0.00" class="form-control" required>
+<form class="col-6">
+    <div class="input-group mb-6">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Reimbursment ID number you wish to approve or deny:</span>
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Description:</span>
-            </div>
-           <textarea [(ngModel)]="description" name="newReimDesc" class="form=control" rows='5' cols='100%' placeholder="Describe what the reimbursment is for and how it relates to your work." required></textarea>
+       <input [(ngModel)]="reimId" name="reimidselect" type="number" min="0" class="form-control" required>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Select Reimbursment Type:</span>
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Select Reimbursment Type:</span>
-            </div>
-           <select [(ngModel)]="type" name="newReimType" class="form=control" required>
-               <option value="1">Lodging</option>
-               <option value="2">Travel</option>
-               <option value="3">Food</option>
-               <option value="4">Other</option>
-           </select>
-        </div>
-        <button (click)="sendReim()" class="btn btn-secondary">Submit</button>
-    </form>
-    
-</div>
-
+       <select [(ngModel)]="approval" name="approvalselect" class="form=control" required>
+           <option value="1">Approve</option>
+           <option value="2">Deny</option>
+       </select>
+    </div>
+    <button (click)="reimApp()" class="btn btn-secondary">Submit</button>
+</form>

@@ -9,6 +9,9 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReceiptComponent } from './components/receipt/receipt.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { SplashComponent } from './components/splash/splash.component';
+import { ManagerComponent } from './components/manager/manager.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { ReceiptComponent } from './components/receipt/receipt.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ReceiptComponent
+    ReceiptComponent,
+    LogoutComponent,
+    SplashComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,

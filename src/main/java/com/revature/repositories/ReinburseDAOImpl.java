@@ -14,7 +14,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 import com.revature.models.ReceiptTemplate;
 import com.revature.models.Reinbursement;
 import com.revature.utils.ConnectionUtil;
@@ -31,14 +30,29 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			String sql = "SELECT * FROM reinburs;";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-
+			
+			Timestamp submit;
+			Timestamp resolved;
+			String receipt;
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				Double amount = rs.getDouble("amount");
-				Timestamp submit = rs.getTimestamp("submit");
-				Timestamp resolved = rs.getTimestamp("resolved");
+				if (rs.getTimestamp("submit") != null) {
+					submit = rs.getTimestamp("submit");
+				} else {
+					submit = null;
+				}
+				if (rs.getTimestamp("resolved") != null) {
+					resolved = rs.getTimestamp("resolved");
+				} else {
+					resolved = null;
+				}
 				String descript = rs.getString("descript");
-				String receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				if (rs.getBytes("receipt") != null) {
+					receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				} else {
+					receipt = null;
+				}
 				int author = rs.getInt("author");
 				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
@@ -67,14 +81,29 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 			String sql = "SELECT * FROM reinburs WHERE id = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
-
+			
+			Timestamp submit;
+			Timestamp resolved;
+			String receipt;
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Double amount = rs.getDouble("amount");
-				Timestamp submit = rs.getTimestamp("submit");
-				Timestamp resolved = rs.getTimestamp("resolved");
+				if (rs.getTimestamp("submit") != null) {
+					submit = rs.getTimestamp("submit");
+				} else {
+					submit = null;
+				}
+				if (rs.getTimestamp("resolved") != null) {
+					resolved = rs.getTimestamp("resolved");
+				} else {
+					resolved = null;
+				}
 				String descript = rs.getString("descript");
-				String receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				if (rs.getBytes("receipt") != null) {
+					receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				} else {
+					receipt = null;
+				}
 				int author = rs.getInt("author");
 				int resolver = rs.getInt("resolver");
 				int status = rs.getInt("status");
@@ -189,8 +218,8 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 					resolved = null;
 				}
 				String descript = rs.getString("descript");
-				if(rs.getBytes("receipt") != null) {
-				receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				if (rs.getBytes("receipt") != null) {
+					receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
 				} else {
 					receipt = null;
 				}
@@ -234,6 +263,57 @@ public class ReinburseDAOImpl implements ReinburseDAO {
 		}
 		return true;
 
+	}
+
+	@Override
+	public List<Reinbursement> findByStatus(int status) {
+		List<Reinbursement> list = new ArrayList<>();
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT * FROM reinburs WHERE status = ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, status);
+
+			Timestamp submit;
+			Timestamp resolved;
+			String receipt;
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				Double amount = rs.getDouble("amount");
+				if (rs.getTimestamp("submit") != null) {
+					submit = rs.getTimestamp("submit");
+				} else {
+					submit = null;
+				}
+				if (rs.getTimestamp("resolved") != null) {
+					resolved = rs.getTimestamp("resolved");
+				} else {
+					resolved = null;
+				}
+				String descript = rs.getString("descript");
+				if (rs.getBytes("receipt") != null) {
+					receipt = new String(Base64.getDecoder().decode(rs.getBytes("receipt")));
+				} else {
+					receipt = null;
+				}
+				int author = rs.getInt("author");
+				int resolver = rs.getInt("resolver");
+				//int status = rs.getInt("status");
+				int type = rs.getInt("rein_type");
+
+				Reinbursement r = new Reinbursement(id, amount, submit, resolved, descript, receipt, author, resolver,
+						status, type);
+
+				list.add(r);
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			// logger.warn("Unable to retrieve all reimbursements", e);
+			System.out.println(e);
+		}
+		return list;
 	}
 
 }

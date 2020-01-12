@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReimbursementService {
+
   
 
   constructor(private http: HttpClient) { }
@@ -29,7 +30,21 @@ export class ReimbursementService {
     return this.http.post<Reimbursement[]>(('http://localhost:8080/project-1/getuserreim'), body);
   }
 
-  
+  getReim(status: number): Observable<Reimbursement[]> {
+    let body = {
+      status: status
+    }
+    return this.http.post<Reimbursement[]>(('http://localhost:8080/project-1/getreim'), body);
+  }
+
+  reimApp(reimId: number, approval: number, id: number) {
+    let body = {
+      reimId: reimId,
+      approval: approval,
+      approver: id
+    }
+    return this.http.post<void>(('http://localhost:8080/project-1/approve'), body);
+  }
 
 
 }
