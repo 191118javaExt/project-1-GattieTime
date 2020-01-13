@@ -445,3 +445,45 @@ org.postgresql.util.PSQLException: ERROR: insert or update on table "reinburs" v
 2020-01-13 07:44:23 DEBUG ControllerServlet:50 - approval request recieved
 2020-01-13 07:44:30 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
 2020-01-13 07:44:31 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:02:30 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:02:30 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:02:30 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:02:30 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:02:30 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:02:30 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:03:50 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:03:50 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:03:50 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:03:50 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:03:50 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:03:50 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:04:49 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:04:49 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:04:49 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:04:49 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:04:49 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:04:49 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:09:34 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:09:34 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:09:34 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:09:34 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:09:34 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:09:34 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:10:26 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:10:26 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:10:26 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:10:26 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:10:26 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:10:26 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:10:46 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:10:46 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:10:46 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:10:46 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:10:46 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:10:46 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:11:30 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 10:11:30 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 10:11:30 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 10:11:30 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 10:11:30 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 10:11:30 INFO  UserService:40 - User using username test failed to log in.
