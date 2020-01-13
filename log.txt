@@ -423,3 +423,25 @@ org.postgresql.util.PSQLException: ERROR: insert or update on table "reinburs" v
 2020-01-12 18:24:03 INFO  ReinbursService:99 - Reinbursement 4 failed to be updated.
 2020-01-12 18:35:54 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
 2020-01-12 18:35:54 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:37:38 DEBUG ControllerServlet:30 - login request recieved
+2020-01-12 18:37:41 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-12 18:38:01 DEBUG ControllerServlet:34 - new reimbursement request recieved
+2020-01-12 18:38:05 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-12 18:38:06 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-12 18:38:23 DEBUG ControllerServlet:30 - login request recieved
+2020-01-12 18:38:28 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-12 18:38:43 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:38:48 DEBUG ControllerServlet:50 - approval request recieved
+2020-01-12 18:38:48 INFO  ReinbursService:96 - Reinbursement 5 was resolved by user 1.
+2020-01-12 18:38:52 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:38:53 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:38:56 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-12 18:38:57 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 07:40:53 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 07:41:18 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 07:41:19 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 07:41:54 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 07:44:02 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 07:44:23 DEBUG ControllerServlet:50 - approval request recieved
+2020-01-13 07:44:30 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 07:44:31 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
