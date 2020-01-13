@@ -487,3 +487,50 @@ org.postgresql.util.PSQLException: ERROR: insert or update on table "reinburs" v
 2020-01-13 10:11:30 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
 2020-01-13 10:11:30 INFO  UserService:43 - User tried to log in with user name test that does not exist.
 2020-01-13 10:11:30 INFO  UserService:40 - User using username test failed to log in.
+2020-01-13 10:22:35 DEBUG ControllerServlet:54 - registration request recieved
+2020-01-13 10:22:52 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 10:23:43 DEBUG ControllerServlet:34 - new reimbursement request recieved
+2020-01-13 10:23:48 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 10:24:17 DEBUG ControllerServlet:42 - new receipt request recieved
+2020-01-13 10:24:17 WARN  ReinburseDAOImpl:254 - Reimbursement update failed to execute.
+2020-01-13 10:25:31 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 10:25:31 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 10:26:25 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 10:26:44 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:26:58 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:26:59 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:27:46 DEBUG ControllerServlet:50 - approval request recieved
+2020-01-13 10:27:46 INFO  ReinbursService:96 - Reinbursement 6 was resolved by user 1.
+2020-01-13 10:27:51 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:27:51 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:28:30 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:28:31 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:29:36 DEBUG ControllerServlet:50 - approval request recieved
+2020-01-13 10:29:44 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 10:29:44 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 13:12:51 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 13:12:52 INFO  UserService:43 - User tried to log in with user name tmc@gmail.com that does not exist.
+2020-01-13 13:13:10 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 14:26:24 DEBUG ControllerServlet:54 - registration request recieved
+2020-01-13 14:26:42 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 14:28:03 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 14:28:32 DEBUG ControllerServlet:34 - new reimbursement request recieved
+2020-01-13 14:28:34 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 14:28:44 DEBUG ControllerServlet:42 - new receipt request recieved
+2020-01-13 14:28:53 DEBUG ControllerServlet:42 - new receipt request recieved
+2020-01-13 14:28:53 WARN  ReinburseDAOImpl:254 - Reimbursement update failed to execute.
+2020-01-13 14:29:13 DEBUG ControllerServlet:30 - login request recieved
+2020-01-13 14:29:21 DEBUG ControllerServlet:38 - request for user reimbursement recieved
+2020-01-13 14:29:26 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 14:29:35 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 14:29:35 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 14:29:54 DEBUG ControllerServlet:50 - approval request recieved
+2020-01-13 14:29:54 INFO  ReinbursService:96 - Reinbursement 7 was resolved by user 1.
+2020-01-13 14:29:58 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 14:29:59 DEBUG ControllerServlet:46 - manager request for reimbursement recieved
+2020-01-13 14:31:27 INFO  ReinbursService:99 - Reinbursement 0 failed to be updated.
+2020-01-13 14:31:27 INFO  ReinbursService:43 - Reinbursement 1 was resolved by user 0.
+2020-01-13 14:31:27 INFO  ReinbursService:96 - Reinbursement 0 was resolved by user 0.
+2020-01-13 14:31:27 INFO  ReinbursService:46 - Reinbursement 1 failed to be updated.
+2020-01-13 14:31:27 INFO  UserService:43 - User tried to log in with user name test that does not exist.
+2020-01-13 14:31:27 INFO  UserService:40 - User using username test failed to log in.
